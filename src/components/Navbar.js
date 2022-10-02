@@ -35,7 +35,7 @@ function Navbar() {
                                     </a>
 
                                     <a
-                                        href="https://github.com/siddhantshr31"
+                                        href="https://github.com/siddhantshr/lambda"
                                         className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                                     >
                                         Github
@@ -127,14 +127,14 @@ function Navbar() {
                                 </a>
 
                                 <a
-                                    href="#Projects"
+                                    href="https://instagram.com/development.1xsid"
                                     className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                                 >
-                                    Projects
+                                    Instagram
                                 </a>
 
                                 <a
-                                    href="https://github.com/AHiddenDonut"
+                                    href="https://github.com/siddhantshr/lambda"
                                     className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                                 >
                                     Github
