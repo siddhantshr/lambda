@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/logo192.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+        <script
+            src="https://kit.fontawesome.com/52d371ed10.js"
+            crossorigin="anonymous"
+        ></script>
+        <!-- Primary Meta Tags -->
+        <title>S1D</title>
+        <meta name="theme-color" content="#2a962e" />
+        <meta name="title" content="S1D" />
+        <meta
+            name="description"
+            content="A stacked backend developer and a noob frontend developer ._."
+        />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://siddhantshr.me/" />
+        <meta property="og:title" content="siddhantshr.me" />
+        <meta
+            property="og:description"
+            content="A stacked backend developer and a noob frontend developer ._."
+        />
+        <meta property="og:image" content="./cat.png" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://siddhantshr.me/" />
+        <meta property="twitter:title" content="siddhantshr.me" />
+        <meta
+            property="twitter:description"
+            content="A stacked backend developer and a noob frontend developer ._."
+        />
+        <meta name="twitter:image" content="/cat.png" />
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+        <meta
+            name="keywords"
+            content="Discord Bots, Siddhant Sharma, Discord API, Hyena, Vaxin Alerts, Siddhant, AHiddenDonut"
+        />
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script>
+            function sendMail(_id, question, attachments) {
+                const myFiles = []
+                const filePromises = Object.entries(attachments).map((item) => {
+                    return new Promise((resolve, reject) => {
+                        const [index, file] = item
+                        const reader = new FileReader()
+                        reader.readAsBinaryString(file)
+
+                        reader.onload = function (event) {
+                            myFiles.push({
+                                path: `data:${file.type};base64,${btoa(
+                                    event.target.result
+                                )}`,
+                            })
+                            resolve()
+                        }
+                        reader.onerror = function () {
+                            console.log("can't read the file")
+                            reject()
+                        }
+                    })
+                })
+
+                Promise.all(filePromises)
+                    .then(() => {
+                        isFilesReady = true
+                        fetch("/api/Email", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                message: `QUESTION: \n${question}`,
+                                subject: `NEW QUESTION: ${_id}`,
+                                attachments: myFiles,
+                            }),
+                        }).then((res) =>
+                            console.log("Request complete! response:", res)
+                        )
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                        console.log("something wrong happened")
+                    })
+            }
+        </script>
+    </body>
+</html>
