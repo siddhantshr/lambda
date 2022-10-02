@@ -9,7 +9,7 @@ export default async function handler(request, response) {
     }
 
     needle.get(
-        "https://hgc3fo.deta.dev/api/AddFormSubmits",
+        "https://maverick.xlambda.xyz/api/AddFormSubmits",
         options,
         function (error, resp) {
             if (!error && resp.statusCode === 200)
